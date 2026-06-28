@@ -1,185 +1,200 @@
 # Drone-embryogenesis_ML
-Deep learning
+
+Deep learning framework for gene-expression pattern analysis.
+
 # Enhanced Gene Expression Analysis System V3.0
-## 简介
 
-Enhanced Gene Expression Analysis System V3.0 是一个综合性的基因表达数据分析工具，整合了多种先进的机器学习和深度学习方法，用于基因表达模式识别、共表达网络构建和生物标志物发现。
+## Introduction
 
-### 核心特性
+**Enhanced Gene Expression Analysis System V3.0** is an integrated gene-expression data analysis toolkit. It combines weighted gene co-expression network analysis, unsupervised clustering, machine learning, deep learning, visualization, and automated report generation. The system is designed for gene-expression pattern recognition, co-expression network construction, and biomarker or candidate-gene discovery.
 
--  **WGCNA分析**：加权基因共表达网络分析
--  **KNN聚类**：基于密度的无监督聚类细化
--  **深度学习**：11种神经网络模型
--  **机器学习**：8种传统机器学习算法
--  **可视化**：30+种专业级科学可视化
--  **报告生成**：自动化HTML综合分析报告
+### Key Features
 
----
-
-## 主要功能
-
-### 1. 网络分析模块
-
-#### WGCNA (Weighted Gene Co-expression Network Analysis)
-```python
-# 核心功能
-- 自动软阈值选择
-- 拓扑重叠矩阵(TOM)计算
-- 层次聚类与动态树切割
-- 模块识别与合并
-- 模块特征基因提取
-```
-
-**关键参数：**
-- `--soft_power`: 软阈值幂次（0为自动检测）
-- `--min_module_size`: 最小模块大小（默认30）
-- `--merge_cut_height`: 模块合并阈值（默认0.25）
-- `--network_type`: 网络类型（unsigned/signed/signed_hybrid）
-- `--deep_split`: 树切割深度（0-3）
-
-#### KNN无监督聚类
-```python
-# 核心功能
-- 局部密度计算
-- 密度峰值识别
-- 簇扩展算法
-- 自适应参数选择
-```
-
-**关键参数：**
-- `--n_neighbors`: 近邻数量（默认10）
-- `--min_cluster_size`: 最小簇大小（默认5）
-- `--knn_method`: 聚类方法（standard/adaptive）
-
-### 2. 机器学习模块
-
-#### 深度学习模型（11个）
-
-| 模型 | 架构特点 | 适用场景 |
-|------|---------|---------|
-| **RNN** | 基础循环神经网络 | 时序依赖建模 |
-| **LSTM** | 长短期记忆网络 | 长期依赖捕获 |
-| **BiLSTM** | 双向LSTM | 上下文信息利用 |
-| **GRU** | 门控循环单元 | 轻量级时序建模 |
-| **CNN** | 一维卷积网络 | 局部模式识别 |
-| **ResNet** | 残差网络 | 深层特征学习 |
-| **Transformer** | 注意力机制 | 全局依赖建模 |
-| **AttentionRNN** | 注意力+RNN | 关键位置聚焦 |
-| **TCN** | 时间卷积网络 | 因果序列建模 |
-| **WaveNet** | 门控卷积 | 序列生成 |
-| **InceptionTime** | 多尺度卷积 | 多分辨率特征 |
-
-#### 机器学习模型（8个）
-
-| 模型 | 类型 | 特点 |
-|------|------|------|
-| **Random Forest** | 集成学习 | 强鲁棒性，特征重要性 |
-| **Gradient Boosting** | 集成学习 | 高准确率，顺序优化 |
-| **AdaBoost** | 集成学习 | 自适应权重调整 |
-| **Extra Trees** | 集成学习 | 极度随机化 |
-| **SVM** | 支持向量机 | 高维数据处理 |
-| **KNN** | 实例学习 | 简单直观 |
-| **Logistic Regression** | 线性模型 | 可解释性强 |
-| **Naive Bayes** | 概率模型 | 快速训练 |
-
-### 3. 可视化模块
-
-#### 网络可视化
-- **基因网络图**：Cytoscape风格的交互网络
-- **TOM热图**：拓扑重叠矩阵可视化
-- **模块树图**：层次聚类树状图
-- **特征基因相关性**：模块间关系热图
-
-#### 表达模式可视化
-- **时序分析图**：彩色趋势线+置信区间
-- **热图分析**：原始值、Z-score、层次聚类三视角
-- **箱线图**：分组差异+显著性检验
-- **雷达图**：模型性能多维对比
-
-#### 模型性能可视化
-- **神经网络架构图**：圆形节点可视化
-- **混淆矩阵**：分类性能详解
-- **学习曲线**：训练过程追踪
-- **过拟合分析**：训练集vs测试集对比
-- **PR权衡图**：精确率-召回率关系
+- **WGCNA analysis**: weighted gene co-expression network analysis.
+- **KNN clustering**: unsupervised clustering refinement based on local density.
+- **Deep learning**: 11 neural-network models for expression-pattern classification.
+- **Machine learning**: 8 classical machine-learning algorithms.
+- **Visualization**: more than 30 publication-style scientific visualizations.
+- **Report generation**: automated comprehensive HTML analysis reports.
 
 ---
 
-## 系统架构
+## Main Functions
 
+### 1. Network Analysis Module
+
+#### WGCNA: Weighted Gene Co-expression Network Analysis
+
+```python
+# Core functions
+- Automatic soft-threshold power selection
+- Topological overlap matrix (TOM) calculation
+- Hierarchical clustering and dynamic tree cutting
+- Module detection and module merging
+- Module eigengene extraction
 ```
+
+**Key parameters**
+
+- `--soft_power`: soft-thresholding power. Set to `0` for automatic detection.
+- `--min_module_size`: minimum module size. Default: `30`.
+- `--merge_cut_height`: module merging threshold. Default: `0.25`.
+- `--network_type`: network type, including `unsigned`, `signed`, or `signed_hybrid`.
+- `--deep_split`: dynamic tree-cutting depth, ranging from `0` to `3`.
+
+#### KNN-based Unsupervised Clustering
+
+```python
+# Core functions
+- Local density calculation
+- Density-peak identification
+- Cluster expansion
+- Adaptive parameter selection
+```
+
+**Key parameters**
+
+- `--n_neighbors`: number of nearest neighbors. Default: `10`.
+- `--min_cluster_size`: minimum cluster size. Default: `5`.
+- `--knn_method`: clustering method, including `standard` or `adaptive`.
+
+---
+
+### 2. Machine Learning Module
+
+#### Deep Learning Models
+
+| Model | Architecture feature | Suitable application |
+|---|---|---|
+| **RNN** | Basic recurrent neural network | Temporal-dependency modeling |
+| **LSTM** | Long short-term memory network | Long-range dependency capture |
+| **BiLSTM** | Bidirectional LSTM | Use of contextual information |
+| **GRU** | Gated recurrent unit | Lightweight temporal modeling |
+| **CNN** | One-dimensional convolutional network | Local pattern recognition |
+| **ResNet** | Residual network | Deep feature learning |
+| **Transformer** | Attention mechanism | Global dependency modeling |
+| **AttentionRNN** | Attention plus RNN | Identification of informative positions |
+| **TCN** | Temporal convolutional network | Causal sequence modeling |
+| **WaveNet** | Gated convolutional network | Sequence modeling and generation |
+| **InceptionTime** | Multi-scale convolution | Multi-resolution feature extraction |
+
+#### Classical Machine Learning Models
+
+| Model | Type | Feature |
+|---|---|---|
+| **Random Forest** | Ensemble learning | Robust performance and feature importance |
+| **Gradient Boosting** | Ensemble learning | High accuracy through sequential optimization |
+| **AdaBoost** | Ensemble learning | Adaptive sample weighting |
+| **Extra Trees** | Ensemble learning | Highly randomized trees |
+| **SVM** | Support vector machine | Suitable for high-dimensional data |
+| **KNN** | Instance-based learning | Simple and intuitive |
+| **Logistic Regression** | Linear model | Interpretable classification |
+| **Naive Bayes** | Probabilistic model | Fast training |
+
+---
+
+### 3. Visualization Module
+
+#### Network Visualization
+
+- **Gene network plots**: Cytoscape-style interactive networks.
+- **TOM heatmaps**: visualization of the topological overlap matrix.
+- **Module dendrograms**: hierarchical clustering trees.
+- **Eigengene correlation heatmaps**: relationships among modules.
+
+#### Expression-pattern Visualization
+
+- **Time-series plots**: colored trend lines with confidence intervals.
+- **Heatmap analysis**: raw expression values, Z-scores, and hierarchical clustering views.
+- **Boxplots**: group differences and significance testing.
+- **Radar charts**: multidimensional model-performance comparison.
+
+#### Model-performance Visualization
+
+- **Neural-network architecture diagrams**: circular node-based architecture plots.
+- **Confusion matrices**: detailed classification-performance summaries.
+- **Learning curves**: training-process tracking.
+- **Overfitting analysis**: comparison between training and testing performance.
+- **Precision–recall trade-off plots**: relationship between precision and recall.
+
+---
+
+## System Architecture
+
+```text
 Enhanced Gene Expression Analysis System V3.0
 │
-├── 数据预处理层
-│   ├── 数据加载 (CSV/TSV自动识别)
-│   ├── 质量控制 (零表达/低表达/低方差过滤)
-│   ├── 标准化 (Log2转换, Z-score)
-│   └── 分组整合
+├── Data preprocessing layer
+│   ├── Data loading: automatic CSV/TSV delimiter detection
+│   ├── Quality control: zero-expression, low-expression, and low-variance filtering
+│   ├── Normalization: log2 transformation and Z-score scaling
+│   └── Group integration
 │
-├── 网络分析层
-│   ├── WGCNA模块
-│   │   ├── 软阈值选择
-│   │   ├── 邻接矩阵计算
-│   │   ├── TOM计算
-│   │   ├── 模块识别
-│   │   └── 特征基因提取
+├── Network analysis layer
+│   ├── WGCNA module
+│   │   ├── Soft-threshold selection
+│   │   ├── Adjacency matrix calculation
+│   │   ├── TOM calculation
+│   │   ├── Module detection
+│   │   └── Eigengene extraction
 │   │
-│   └── KNN聚类模块
-│       ├── 密度计算
-│       ├── 峰值识别
-│       └── 簇扩展
+│   └── KNN clustering module
+│       ├── Density calculation
+│       ├── Peak identification
+│       └── Cluster expansion
 │
-├── 机器学习层
-│   ├── 深度学习引擎 (PyTorch)
-│   │   ├── 模型构建
-│   │   ├── 训练优化
-│   │   ├── 早停机制
-│   │   └── 模型导出
+├── Machine learning layer
+│   ├── Deep learning engine: PyTorch
+│   │   ├── Model construction
+│   │   ├── Training optimization
+│   │   ├── Early stopping
+│   │   └── Model export
 │   │
-│   └── 传统机器学习 (Scikit-learn)
-│       ├── 集成学习
-│       ├── 支持向量机
-│       └── 概率模型
+│   └── Classical machine learning: Scikit-learn
+│       ├── Ensemble learning
+│       ├── Support vector machines
+│       └── Probabilistic models
 │
-├── 可视化层
-│   ├── 网络图 (NetworkX + Matplotlib)
-│   ├── 统计图 (Seaborn + Matplotlib)
-│   └── 交互报告 (HTML)
+├── Visualization layer
+│   ├── Network plots: NetworkX and Matplotlib
+│   ├── Statistical plots: Seaborn and Matplotlib
+│   └── Interactive reports: HTML
 │
-└── 输出管理层
-    ├── 目录结构创建
-    ├── 结果保存 (CSV/JSON/PNG/PDF)
-    └── 报告生成 (HTML)
+└── Output management layer
+    ├── Directory creation
+    ├── Result saving: CSV, JSON, PNG, and PDF
+    └── Report generation: HTML
 ```
 
 ---
 
-## 安装指南
+## Installation
 
-### 环境要求
+### System Requirements
 
 ```bash
-# Python版本
+# Python version
 Python >= 3.7
 
-# 操作系统
+# Operating systems
 Windows / Linux / macOS
 ```
 
-### 依赖安装
+### Dependency Installation
 
-#### 方式一：使用requirements.txt
+#### Option 1: Install from `requirements.txt`
 
 ```bash
-# 创建虚拟环境（推荐）
+# Create a virtual environment. Recommended.
 conda create -n gene_analysis python=3.9
 conda activate gene_analysis
 
-# 安装依赖
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-**requirements.txt:**
+**requirements.txt**
+
 ```txt
 numpy==1.24.3
 pandas==2.0.3
@@ -192,33 +207,33 @@ networkx==3.1
 joblib==1.3.1
 ```
 
-#### 方式二：手动安装
+#### Option 2: Manual Installation
 
 ```bash
-# 核心包
+# Core packages
 pip install numpy pandas scipy
 
-# 机器学习
+# Machine learning
 pip install torch scikit-learn
 
-# 可视化
+# Visualization
 pip install matplotlib seaborn
 
-# 其他
+# Other packages
 pip install networkx joblib
 ```
 
-### 可选依赖
+### Optional Dependencies
 
 ```bash
-# 更好的Venn图支持
+# Improved Venn-diagram support
 pip install matplotlib-venn
 
-# GPU支持（CUDA 11.8示例）
+# GPU support: CUDA 11.8 example
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
 
-### 验证安装
+### Installation Check
 
 ```bash
 python gene_analysis.py --help
@@ -226,15 +241,15 @@ python gene_analysis.py --help
 
 ---
 
-## 使用方法
+## Usage
 
-### 基本用法
+### Basic Usage
 
 ```bash
 python gene_analysis.py -i expression.csv -g groups.txt
 ```
 
-### 完整分析（推荐）
+### Complete Analysis: Recommended
 
 ```bash
 python gene_analysis.py \
@@ -250,10 +265,10 @@ python gene_analysis.py \
     --export_models
 ```
 
-### 快速测试
+### Quick Test
 
 ```bash
-# 小数据集测试
+# Test on a small dataset
 python gene_analysis.py \
     -i small_dataset.csv \
     -g groups.txt \
@@ -261,10 +276,10 @@ python gene_analysis.py \
     --test_size 0.3
 ```
 
-### 高性能配置
+### High-performance Configuration
 
 ```bash
-# 多核并行 + GPU加速
+# Multi-core parallelization and GPU acceleration
 python gene_analysis.py \
     -i large_dataset.csv \
     -g groups.txt \
@@ -276,17 +291,19 @@ python gene_analysis.py \
 
 ---
 
-## 输入文件格式
+## Input File Format
 
-### 1. 表达矩阵 (expression.csv)
+### 1. Expression Matrix: `expression.csv`
 
-**格式要求：**
-- 行：基因
-- 列：样本
-- 第一列：基因ID
-- 数值：表达量（原始counts或标准化值）
+**Format requirements**
 
-**示例：**
+- Rows: genes.
+- Columns: samples.
+- First column: gene IDs.
+- Values: expression levels, either raw counts or normalized values.
+
+**Example**
+
 ```csv
 Gene_ID,Sample1,Sample2,Sample3,Sample4
 Gene_A,100.5,120.3,95.2,110.8
@@ -295,18 +312,21 @@ Gene_C,200.1,210.5,195.3,205.7
 ...
 ```
 
-**支持的分隔符：**
-- 自动识别：`,` `;` `\t` ` `
-- 手动指定：`--sep comma/tab/space`
+**Supported delimiters**
 
-### 2. 分组文件 (groups.txt)
+- Automatic detection: `,`, `;`, `\t`, or spaces.
+- Manual specification: `--sep comma/tab/space`.
 
-**格式要求：**
-- 两列：Sample_ID, Group
-- 必须包含表头
-- 样本ID必须与表达矩阵匹配
+### 2. Group File: `groups.txt`
 
-**示例：**
+**Format requirements**
+
+- Two columns: `Sample_ID` and `Group`.
+- A header line is required.
+- Sample IDs must match the sample names in the expression matrix.
+
+**Example**
+
 ```txt
 Sample_ID    Group
 Sample1      T0
@@ -317,103 +337,104 @@ Sample5      T2
 Sample6      T2
 ```
 
-**支持的分组类型：**
-- 时间点：T0, T1, T2, ...
-- 处理组：Control, Treated, ...
-- 生物条件：WT, Mutant, ...
-- 任意文本标签
+**Supported group labels**
+
+- Time points: `T0`, `T1`, `T2`, ...
+- Treatments: `Control`, `Treated`, ...
+- Biological conditions: `WT`, `Mutant`, ...
+- Any other text labels.
 
 ---
 
-## 输出结果
+## Output Results
 
-### 目录结构
+### Directory Structure
 
-```
+```text
 analysis_results_20240101_120000/
 │
-├── 📊 wgcna_analysis/                    # WGCNA分析结果
-│   ├── wgcna_soft_threshold.png          # 软阈值选择图
-│   ├── wgcna_gene_dendrogram.png         # 基因聚类树
-│   ├── wgcna_tom_heatmap.png             # TOM热图
-│   ├── module_statistics.png             # 模块统计
-│   ├── module_eigengene_correlations.png # 特征基因相关性
-│   ├── wgcna_modules.csv                 # 模块分配表
-│   └── module_eigengenes.csv             # 特征基因矩阵
+├── wgcna_analysis/                       # WGCNA analysis results
+│   ├── wgcna_soft_threshold.png          # Soft-threshold selection plot
+│   ├── wgcna_gene_dendrogram.png         # Gene clustering dendrogram
+│   ├── wgcna_tom_heatmap.png             # TOM heatmap
+│   ├── module_statistics.png             # Module statistics
+│   ├── module_eigengene_correlations.png # Eigengene correlation heatmap
+│   ├── wgcna_modules.csv                 # Module assignment table
+│   └── module_eigengenes.csv             # Module eigengene matrix
 │
-├── 🎯 knn_clustering/                    # KNN聚类结果
-│   ├── knn_clustering.csv                # 聚类结果表
-│   └── integrated_clustering.csv         # 整合聚类表
+├── knn_clustering/                       # KNN clustering results
+│   ├── knn_clustering.csv                # Clustering result table
+│   └── integrated_clustering.csv         # Integrated clustering table
 │
-├── 🤖 models/                            # 模型专用文件夹
+├── models/                               # Model-specific folders
 │   ├── RNN/
-│   │   ├── RNN_performance.png           # 性能图
+│   │   ├── RNN_performance.png           # Performance plot
 │   │   ├── RNN_predictions_with_expression.csv
 │   │   └── RNN_summary.json
 │   ├── LSTM/
 │   ├── CNN/
-│   └── ... (每个模型独立文件夹)
+│   └── ...                               # One folder for each model
 │
-├── 🧠 neural_network_architectures/      # 神经网络架构图
+├── neural_network_architectures/         # Neural-network architecture plots
 │   ├── RNN_architecture_circular.png
 │   ├── LSTM_architecture_circular.png
-│   └── ... (所有DL模型)
+│   └── ...                               # All deep-learning models
 │
-├── 📉 overfitting_analysis/              # 过拟合分析
+├── overfitting_analysis/                 # Overfitting analysis
 │   ├── RNN_overfitting_analysis.png
 │   ├── LSTM_overfitting_analysis.png
 │   └── ...
 │
-├── 📈 time_series_analysis/              # 时序分析
+├── time_series_analysis/                 # Time-series analysis
 │   └── time_series_analysis_enhanced.png
 │
-├── 📊 boxplot_analysis/                  # 箱线图分析
+├── boxplot_analysis/                     # Boxplot analysis
 │   ├── RNN_boxplot_analysis.png
 │   ├── LSTM_boxplot_analysis.png
 │   └── ...
 │
-├── 🔥 heatmap_analysis/                  # 热图分析
+├── heatmap_analysis/                     # Heatmap analysis
 │   ├── RNN_heatmap_analysis.png
 │   ├── LSTM_heatmap_analysis.png
 │   └── ...
 │
-├── 🌐 networks/                          # 基因网络
-│   ├── gene_network.png                  # 主网络
-│   ├── gene_network.gml                  # Cytoscape格式
-│   ├── network_T0.png                    # 各时间点网络
+├── networks/                             # Gene networks
+│   ├── gene_network.png                  # Main network
+│   ├── gene_network.gml                  # Cytoscape-compatible format
+│   ├── network_T0.png                    # Time-point-specific network
 │   ├── network_T1.png
 │   ├── network_genes_boxplot_significance.png
 │   └── network_statistics.json
 │
-├── 📊 visualizations/                    # 综合可视化
-│   ├── comprehensive_model_analysis.png  # 四合一分析图
-│   ├── model_comparison_bars.png         # 模型对比
-│   ├── model_radar_charts.png            # 雷达图
-│   ├── precision_recall_tradeoff.png     # PR曲线
-│   ├── expression_pattern_analysis.png   # 表达模式
-│   ├── cluster_centers_heatmap.png       # 聚类中心
-│   └── key_genes_patterns.png            # 关键基因模式
+├── visualizations/                       # Integrated visualizations
+│   ├── comprehensive_model_analysis.png  # Four-panel integrated analysis
+│   ├── model_comparison_bars.png         # Model comparison
+│   ├── model_radar_charts.png            # Radar charts
+│   ├── precision_recall_tradeoff.png     # PR curve
+│   ├── expression_pattern_analysis.png   # Expression-pattern analysis
+│   ├── cluster_centers_heatmap.png       # Cluster-center heatmap
+│   └── key_genes_patterns.png            # Key-gene patterns
 │
-├── 🔍 intersection_analysis/             # 交集分析
-│   ├── models_venn_diagram.png           # Venn图
-│   ├── gene_overlap_analysis.png         # 重叠分析
-│   └── intersection_genes.csv            # 交集基因列表
+├── intersection_analysis/                # Intersection analysis
+│   ├── models_venn_diagram.png           # Venn diagram
+│   ├── gene_overlap_analysis.png         # Overlap analysis
+│   └── intersection_genes.csv            # Intersected gene list
 │
-├── 💾 data/                              # 数据文件
-│   ├── group_means.csv                   # 组均值
-│   ├── gene_clusters.csv                 # 基因聚类
-│   ├── key_genes.csv                     # 关键基因
-│   ├── model_performance.csv             # 模型性能表
-│   ├── model_results.json                # 结果JSON
-│   ├── preprocessing_stats.json          # 预处理统计
-│   ├── intersection_genes.csv            # 交集基因
-│   └── {Model}_predictions.csv           # 各模型预测
+├── data/                                 # Data files
+│   ├── group_means.csv                   # Group means
+│   ├── gene_clusters.csv                 # Gene clustering
+│   ├── key_genes.csv                     # Key genes
+│   ├── model_performance.csv             # Model performance table
+│   ├── model_results.json                # Result JSON file
+│   ├── preprocessing_stats.json          # Preprocessing statistics
+│   ├── intersection_genes.csv            # Intersected genes
+│   └── {Model}_predictions.csv           # Model-specific predictions
 │
-├── 📝 reports/                           # 报告文件
-│   ├── comprehensive_analysis_report.html # HTML报告
-│   └── analysis_summary.json             # 摘要JSON
+├── reports/                              # Report files
+│   ├── comprehensive_analysis_report.html # Comprehensive HTML report
+│   └── analysis_summary.json             # Summary JSON file
 │
-├── 💼 exported_models/                   # 导出的模型
+├── exported_models/                      # Exported models
 │   ├── RNN/
 │   │   └── RNN_model.pth
 │   ├── LSTM/
@@ -422,12 +443,13 @@ analysis_results_20240101_120000/
 │   │   └── RandomForest_model.joblib
 │   └── ...
 │
-└── directory_structure.json              # 目录结构索引
+└── directory_structure.json              # Directory-structure index
 ```
 
-### 关键输出文件说明
+### Key Output Files
 
-#### 1. 模块分配文件 (wgcna_modules.csv)
+#### 1. Module Assignment File: `wgcna_modules.csv`
+
 ```csv
 Gene,Module
 Gene_A,turquoise
@@ -436,7 +458,8 @@ Gene_C,brown
 ...
 ```
 
-#### 2. 模型性能表 (model_performance.csv)
+#### 2. Model-performance Table: `model_performance.csv`
+
 ```csv
 Model,Accuracy,Precision,Recall,F1,Training_Time
 LSTM,0.9234,0.9156,0.9234,0.9189,45.23
@@ -444,7 +467,8 @@ CNN,0.9123,0.9045,0.9123,0.9078,32.15
 ...
 ```
 
-#### 3. 关键基因列表 (key_genes.csv)
+#### 3. Key-gene List: `key_genes.csv`
+
 ```csv
 gene,pattern,slope,r_squared,max_change,cv,score,cluster
 Gene_X,Strong_Increasing,1.234,0.89,2.5,0.15,25.6,1
@@ -452,7 +476,8 @@ Gene_Y,Peak,0.345,0.76,3.2,0.22,18.9,2
 ...
 ```
 
-#### 4. 预测结果 (predictions_with_expression.csv)
+#### 4. Prediction File: `predictions_with_expression.csv`
+
 ```csv
 gene,true_label,predicted_label,correct,true_pattern,predicted_pattern,expr_Sample1,...
 Gene_A,0,0,True,Increasing,Increasing,100.5,...
@@ -462,257 +487,270 @@ Gene_B,2,2,True,Peak,Peak,200.1,...
 
 ---
 
-## 参数详解
+## Parameters
 
-### 必需参数
+### Required Parameters
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `-i, --input` | 字符串 | 表达矩阵文件路径 |
-| `-g, --groups` | 字符串 | 分组文件路径 |
+| Parameter | Type | Description |
+|---|---|---|
+| `-i, --input` | string | Path to the expression matrix |
+| `-g, --groups` | string | Path to the group file |
 
-### WGCNA参数
+### WGCNA Parameters
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `--wgcna` | 标志 | False | 启用WGCNA分析 |
-| `--soft_power` | 整数 | 0 | 软阈值幂次（0=自动） |
-| `--min_module_size` | 整数 | 30 | 最小模块大小 |
-| `--merge_cut_height` | 浮点 | 0.25 | 模块合并阈值 |
-| `--network_type` | 选择 | unsigned | 网络类型 |
-| `--deep_split` | 整数 | 2 | 树切割深度(0-3) |
+| Parameter | Type | Default | Description |
+|---|---:|---:|---|
+| `--wgcna` | flag | `False` | Enable WGCNA analysis |
+| `--soft_power` | integer | `0` | Soft-thresholding power. `0` means automatic selection |
+| `--min_module_size` | integer | `30` | Minimum module size |
+| `--merge_cut_height` | float | `0.25` | Module merging threshold |
+| `--network_type` | choice | `unsigned` | Network type |
+| `--deep_split` | integer | `2` | Dynamic tree-cutting depth, from `0` to `3` |
 
-### KNN参数
+### KNN Parameters
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `--knn` | 标志 | False | 启用KNN聚类 |
-| `--n_neighbors` | 整数 | 10 | 近邻数量 |
-| `--min_cluster_size` | 整数 | 5 | 最小簇大小 |
-| `--knn_method` | 选择 | standard | 聚类方法 |
+| Parameter | Type | Default | Description |
+|---|---:|---:|---|
+| `--knn` | flag | `False` | Enable KNN clustering |
+| `--n_neighbors` | integer | `10` | Number of nearest neighbors |
+| `--min_cluster_size` | integer | `5` | Minimum cluster size |
+| `--knn_method` | choice | `standard` | Clustering method |
 
-### 深度学习参数
+### Deep Learning Parameters
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `--epochs` | 整数 | 100 | 训练轮数 |
-| `--learning_rate` | 浮点 | 0.001 | 学习率 |
-| `--batch_size` | 整数 | 32 | 批量大小 |
-| `--hidden_size` | 整数 | 64 | 隐藏层大小 |
-| `--dropout` | 浮点 | 0.3 | Dropout率 |
-| `--num_layers` | 整数 | 2 | RNN层数 |
-| `--patience` | 整数 | 20 | 早停耐心值 |
+| Parameter | Type | Default | Description |
+|---|---:|---:|---|
+| `--epochs` | integer | `100` | Number of training epochs |
+| `--learning_rate` | float | `0.001` | Learning rate |
+| `--batch_size` | integer | `32` | Batch size |
+| `--hidden_size` | integer | `64` | Hidden-layer size |
+| `--dropout` | float | `0.3` | Dropout rate |
+| `--num_layers` | integer | `2` | Number of RNN layers |
+| `--patience` | integer | `20` | Early-stopping patience |
 
-### 其他参数
+### Other Parameters
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `--test_size` | 浮点 | 0.2 | 测试集比例 |
-| `--val_size` | 浮点 | 0.2 | 验证集比例 |
-| `--n_clusters` | 整数 | 6 | K-means聚类数 |
-| `--output_prefix` | 字符串 | analysis | 输出前缀 |
-| `--export_models` | 布尔 | True | 导出模型 |
-| `--n_jobs` | 整数 | -1 | 并行作业数 |
+| Parameter | Type | Default | Description |
+|---|---:|---:|---|
+| `--test_size` | float | `0.2` | Test-set proportion |
+| `--val_size` | float | `0.2` | Validation-set proportion |
+| `--n_clusters` | integer | `6` | Number of K-means clusters |
+| `--output_prefix` | string | `analysis` | Output prefix |
+| `--export_models` | Boolean | `True` | Export trained models |
+| `--n_jobs` | integer | `-1` | Number of parallel jobs |
 
 ---
 
-## 分析流程
+## Analysis Workflow
 
-### 完整流程图
+### Complete Workflow
 
 ```mermaid
 graph TD
-    A[开始] --> B[数据加载]
-    B --> C[数据预处理]
-    C --> D{启用WGCNA?}
-    D -->|是| E[WGCNA分析]
-    D -->|否| F[跳过]
-    E --> G{启用KNN?}
+    A[Start] --> B[Data loading]
+    B --> C[Data preprocessing]
+    C --> D{Enable WGCNA?}
+    D -->|Yes| E[WGCNA analysis]
+    D -->|No| F[Skip]
+    E --> G{Enable KNN?}
     F --> G
-    G -->|是| H[KNN聚类]
-    G -->|否| I[准备ML数据]
+    G -->|Yes| H[KNN clustering]
+    G -->|No| I[Prepare ML data]
     H --> I
-    I --> J[深度学习训练]
-    I --> K[机器学习训练]
-    J --> L[模型评估]
+    I --> J[Deep learning training]
+    I --> K[Machine learning training]
+    J --> L[Model evaluation]
     K --> L
-    L --> M[生成可视化]
-    M --> N[保存结果]
-    N --> O[生成报告]
-    O --> P[结束]
+    L --> M[Generate visualizations]
+    M --> N[Save results]
+    N --> O[Generate report]
+    O --> P[End]
 ```
 
-### 详细步骤
+### Detailed Steps
 
-#### Step 1: 数据加载与预处理
-1. **文件读取**
-   - 自动检测分隔符
-   - 验证文件格式
-   - 加载表达矩阵和分组信息
+#### Step 1: Data Loading and Preprocessing
 
-2. **质量控制**
-   - 移除零表达基因
-   - 过滤低表达基因（< 3个样本表达 > 阈值）
-   - 过滤低方差基因（< 10%分位数）
+1. **File reading**
+   - Automatically detect delimiters.
+   - Validate file format.
+   - Load the expression matrix and group information.
 
-3. **标准化**
-   - Log2转换（如果需要）
-   - 样本-分组匹配
-   - 计算组均值和标准差
+2. **Quality control**
+   - Remove zero-expression genes.
+   - Filter low-expression genes, for example genes expressed above the threshold in fewer than three samples.
+   - Filter low-variance genes, for example genes below the 10th variance percentile.
 
-#### Step 2: WGCNA分析
-1. **软阈值选择**
+3. **Normalization**
+   - Apply log2 transformation when needed.
+   - Match samples between the expression matrix and the group file.
+   - Calculate group means and standard deviations.
+
+#### Step 2: WGCNA Analysis
+
+1. **Soft-threshold selection**
+
    ```python
-   # 自动选择最佳幂次
-   # 目标：R² > 0.85
-   # 范围：1-20
+   # Automatically select the optimal power
+   # Target: R² > 0.85
+   # Range: 1–20
    ```
 
-2. **网络构建**
-   - 计算邻接矩阵
-   - 计算TOM矩阵
-   - 层次聚类
+2. **Network construction**
+   - Calculate the adjacency matrix.
+   - Calculate the TOM matrix.
+   - Perform hierarchical clustering.
 
-3. **模块识别**
-   - 动态树切割
-   - 模块合并
-   - 特征基因提取
+3. **Module detection**
+   - Apply dynamic tree cutting.
+   - Merge similar modules.
+   - Extract module eigengenes.
 
-#### Step 3: KNN聚类
-1. **密度计算**
+#### Step 3: KNN Clustering
+
+1. **Density calculation**
+
    ```python
    density = 1 / (mean_knn_distance + epsilon)
    ```
 
-2. **峰值识别**
-   - 寻找局部密度最大值
-   - 密度阈值过滤
+2. **Peak identification**
+   - Identify local density maxima.
+   - Apply density-threshold filtering.
 
-3. **簇扩展**
-   - 基于密度可达性
-   - 考虑种子密度比例
+3. **Cluster expansion**
+   - Expand clusters based on density reachability.
+   - Consider the seed-density ratio.
 
-#### Step 4: 机器学习
-1. **数据准备**
-   - 特征提取（组均值）
-   - 标签生成（模式分类）
-   - 数据划分（训练/验证/测试）
+#### Step 4: Machine Learning
 
-2. **深度学习训练**
-   - 11个模型并行训练
-   - 早停机制
-   - 学习率调度
-   - 模型验证
+1. **Data preparation**
+   - Extract features, such as group means.
+   - Generate labels for expression-pattern classification.
+   - Split data into training, validation, and test sets.
 
-3. **传统机器学习**
-   - 8个算法训练
-   - 交叉验证（可选）
-   - 超参数优化（可选）
+2. **Deep learning training**
+   - Train 11 neural-network models.
+   - Apply early stopping.
+   - Use learning-rate scheduling.
+   - Validate each model.
 
-#### Step 5: 评估与可视化
-1. **性能评估**
-   - 准确率、精确率、召回率、F1
-   - 混淆矩阵
-   - 训练时间
+3. **Classical machine learning**
+   - Train 8 classical algorithms.
+   - Perform cross-validation when enabled.
+   - Conduct hyperparameter optimization when enabled.
 
-2. **可视化生成**
-   - 30+种图表
-   - PDF + PNG格式
-   - 高分辨率输出
+#### Step 5: Evaluation and Visualization
 
-3. **报告生成**
-   - HTML综合报告
-   - JSON数据摘要
-   - CSV结果表格
+1. **Performance evaluation**
+   - Accuracy, precision, recall, and F1 score.
+   - Confusion matrix.
+   - Training time.
+
+2. **Visualization**
+   - More than 30 plot types.
+   - PDF and PNG outputs.
+   - High-resolution figures.
+
+3. **Report generation**
+   - Comprehensive HTML report.
+   - JSON summary.
+   - CSV result tables.
 
 ---
 
+## Frequently Asked Questions
 
-## 常见问题
+### Q1: What should I do if memory is insufficient?
 
-### Q1: 内存不足怎么办？
+**Problem:** Memory overflow occurs when analyzing large datasets.
 
-**问题：** 分析大型数据集时内存溢出
+**Solutions**
 
-**解决方案：**
 ```bash
-# 1. 增加虚拟内存
-# 2. 分批处理
-# 3. 减少模块大小
+# 1. Increase virtual memory.
+# 2. Process data in batches.
+# 3. Increase the minimum module size.
 python gene_analysis.py \
     -i large_data.csv \
     -g groups.txt \
-    --min_module_size 50 \  # 增大最小模块
-    --batch_size 16         # 减小批量大小
+    --min_module_size 50 \
+    --batch_size 16
 ```
 
-### Q2: WGCNA找不到合适的软阈值？
+### Q2: What if WGCNA cannot find a suitable soft-threshold power?
 
-**问题：** R²始终低于0.85
+**Problem:** The scale-free topology fit index remains below 0.85.
 
-**解决方案：**
+**Solutions**
+
 ```bash
-# 1. 手动指定幂次
+# 1. Manually specify the power
 --soft_power 12
 
-# 2. 降低R²阈值（在代码中修改RsquaredCut）
+# 2. Lower the R² threshold in the code by modifying RsquaredCut
 
-# 3. 使用signed网络
+# 3. Use a signed network
 --network_type signed
 ```
 
-### Q3: 模型训练太慢？
+### Q3: What if model training is too slow?
 
-**解决方案：**
+**Solutions**
+
 ```bash
-# 1. 减少训练轮数
+# 1. Reduce the number of epochs
 --epochs 50
 
-# 2. 启用GPU
-# 自动检测，无需设置
+# 2. Use GPU acceleration
+# GPU will be detected automatically when available
 
-# 3. 减少模型数量
-# 注释掉不需要的模型（在代码中）
+# 3. Reduce the number of models
+# Comment out unnecessary models in the code
 
-# 4. 并行计算
+# 4. Use parallel computing
 --n_jobs -1
 ```
 
-### Q4: 找不到共同样本？
+### Q4: What if no matching samples are found?
 
-**问题：** "No matching samples between expression data and group file"
+**Problem:** The program reports `No matching samples between expression data and group file`.
 
-**解决方案：**
+**Solutions**
+
 ```bash
-# 1. 检查样本名格式
-# 表达矩阵列名必须与分组文件Sample_ID完全一致
+# 1. Check sample-name formatting.
+# Sample names in the expression matrix must exactly match Sample_ID in the group file.
 
-# 2. 去除空格
+# 2. Remove spaces.
 sed 's/ //g' groups.txt > groups_clean.txt
 
-# 3. 统一大小写
+# 3. Make the letter case consistent.
 ```
 
-### Q5: 可视化图表不显示中文？
+### Q5: What if Chinese characters are not displayed correctly in figures?
 
-**解决方案：**
+**Solution**
+
 ```python
-# 在代码开头添加：
+# Add the following lines at the beginning of the code:
 import matplotlib.pyplot as plt
-plt.rcParams['font.sans-serif'] = ['SimHei']  # Windows
-plt.rcParams['font.sans-serif'] = ['Arial Unicode MS']  # macOS
+plt.rcParams['font.sans-serif'] = ['SimHei']          # Windows
+plt.rcParams['font.sans-serif'] = ['Arial Unicode MS'] # macOS
 ```
 
-### Q6: GPU未被使用？
+### Q6: What if GPU is not being used?
 
-**检查：**
+**Check**
+
 ```python
 import torch
-print(torch.cuda.is_available())  # 应返回True
-print(torch.cuda.get_device_name(0))  # 显示GPU名称
+print(torch.cuda.is_available())      # Expected output: True
+print(torch.cuda.get_device_name(0))  # Display GPU name
 ```
 
-**安装CUDA版PyTorch：**
+**Install CUDA-enabled PyTorch**
+
 ```bash
 # CUDA 11.8
 pip install torch --index-url https://download.pytorch.org/whl/cu118
@@ -723,28 +761,27 @@ pip install torch --index-url https://download.pytorch.org/whl/cu121
 
 ---
 
-## 高级用法
+## Advanced Usage
 
-### 1. 自定义模型
+### 1. Custom Model
 
 ```python
-# 在代码中添加新模型
+# Add a new model to the code
 class CustomModel(nn.Module):
     def __init__(self, input_size, num_classes=4):
         super(CustomModel, self).__init__()
-        # 定义层
         self.fc1 = nn.Linear(input_size, 128)
         self.fc2 = nn.Linear(128, num_classes)
-    
+
     def forward(self, x):
         x = torch.relu(self.fc1(x))
         return self.fc2(x)
 
-# 添加到模型字典
+# Add it to the model dictionary
 dl_models['Custom'] = CustomModel(input_size=n_features)
 ```
 
-### 2. 批量分析
+### 2. Batch Analysis
 
 ```bash
 #!/bin/bash
@@ -759,13 +796,13 @@ for dataset in data/*.csv; do
 done
 ```
 
-### 3. 参数网格搜索
+### 3. Parameter Grid Search
 
 ```python
-# 修改代码启用网格搜索
---grid_search  # 传递参数
+# Enable grid search by passing the argument below:
+--grid_search
 
-# 在代码中定义参数网格
+# Define a parameter grid in the code:
 param_grid = {
     'n_estimators': [50, 100, 200],
     'max_depth': [5, 10, 15],
@@ -775,26 +812,28 @@ param_grid = {
 
 ---
 
-## 性能优化建议
+## Performance Optimization
 
-### 硬件配置
+### Hardware Recommendations
 
-| 组件 | 最低配置 | 推荐配置 | 大数据配置 |
-|------|---------|---------|-----------|
-| CPU | 4核心 | 8核心 | 16核心+ |
-| RAM | 8GB | 16GB | 32GB+ |
-| GPU | 无 | GTX 1060 | RTX 3090 |
-| 存储 | HDD | SSD | NVMe SSD |
+| Component | Minimum | Recommended | Large-data configuration |
+|---|---:|---:|---:|
+| CPU | 4 cores | 8 cores | 16+ cores |
+| RAM | 8 GB | 16 GB | 32 GB or more |
+| GPU | Not required | GTX 1060 | RTX 3090 |
+| Storage | HDD | SSD | NVMe SSD |
 
-### 数据规模指南
+### Dataset-size Guide
 
-| 基因数 | 样本数 | 预计时间 | 推荐配置 |
-|--------|--------|---------|---------|
-| < 5,000 | < 50 | 10-30分钟 | 最低配置 |
-| 5,000-10,000 | 50-100 | 30分钟-2小时 | 推荐配置 |
-| 10,000-20,000 | 100-200 | 2-6小时 | 大数据配置 |
-| > 20,000 | > 200 | 6小时+ | 服务器配置 |
+| Number of genes | Number of samples | Estimated runtime | Recommended configuration |
+|---:|---:|---:|---|
+| < 5,000 | < 50 | 10–30 min | Minimum |
+| 5,000–10,000 | 50–100 | 30 min–2 h | Recommended |
+| 10,000–20,000 | 100–200 | 2–6 h | Large-data configuration |
+| > 20,000 | > 200 | > 6 h | Server configuration |
 
 ---
 
+## Notes
 
+This README describes the overall functions, input requirements, output structure, and recommended usage of the Enhanced Gene Expression Analysis System V3.0. Before formal publication or repository release, please check that all command-line arguments listed here are consistent with the final version of `gene_analysis.py`.
